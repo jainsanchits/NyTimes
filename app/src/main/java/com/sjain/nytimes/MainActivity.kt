@@ -8,11 +8,15 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.work.Constraints
+import androidx.work.PeriodicWorkRequest
+import androidx.work.WorkManager
 import com.sjain.nytimes.database.NewsDatabase
 import com.sjain.nytimes.database.NewsItemDao
 import com.sjain.nytimes.model.NewsData
 import com.sjain.nytimes.model.NewsItem
 import com.sjain.nytimes.networkpkg.APIService
+import com.sjain.nytimes.services.UpdateNewsService
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
@@ -62,7 +66,9 @@ class MainActivity : AppCompatActivity() {
                  .Builder(UpdateNewsService::class.java, 10, TimeUnit.MINUTES)
                  .setConstraints(myConstraints)
                  .build()
-             WorkManager.getInstance().enqueue(request)*/
+             WorkManager.getInstance().enqueue(request)
+
+            WorkManager.getInstance().getWorkInfoById(request.id).addListener()*/
 
         } else {
             Toast.makeText(this, "Updated", Toast.LENGTH_SHORT).show()
@@ -102,6 +108,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun handleResponse(newItemList: NewsData) {
+        newsItemDao?.deleteAllNewsItem()
         for (newsItem in newItemList.results!!) {
             newsItemDao?.insertNewsItem(newsItem)
         }
@@ -117,24 +124,7 @@ class MainActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         mCompositeDisposable?.clear()
+        WorkManager.getInstance().cancelAllWork()
     }
-
-    /*class UpdateNewsService(context: Context, workerParams: WorkerParameters) : Worker(context, workerParams) {
-
-
-        override fun doWork(): Result {
-
-         return Result.success();
-
-        }
-        private fun handleResponse(newsData: NewsData) {
-            UpdateMethodSuccess(newsData);
-        }
-
-        private fun handleError(error: Throwable) {
-            UpdateMehtodfailure(error);
-        }
-
-    }*/
 }
 

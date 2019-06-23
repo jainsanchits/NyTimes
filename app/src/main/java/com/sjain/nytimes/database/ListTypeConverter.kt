@@ -10,16 +10,16 @@ class ListTypeConverter {
     private val gson = Gson()
 
     @TypeConverter
-    fun stringToList(data: String): ArrayList<Multimedia>? {
-        val listType = object : TypeToken<ArrayList<Multimedia>>() {
+    fun stringToList(data: String): List<Multimedia>? {
+        val listType = object : TypeToken<List<Multimedia>>() {
 
         }.type
 
-        return gson.fromJson<ArrayList<Multimedia>>(data, listType)
+        return gson.fromJson<List<Multimedia>>(data, listType)
     }
 
     @TypeConverter
-    fun ListToString(someObjects: ArrayList<Multimedia>): String {
+    fun ListToString(someObjects: List<Multimedia>): String {
         return gson.toJson(someObjects)
     }
 }

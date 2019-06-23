@@ -19,7 +19,7 @@ abstract class NewsDatabase : RoomDatabase() {
         fun getAppDataBase(context: Context): NewsDatabase? {
             if (INSTANCE == null) {
                 synchronized(NewsDatabase::class) {
-                    INSTANCE = Room.databaseBuilder(context.applicationContext, NewsDatabase::class.java, "newsdb")
+                    INSTANCE = Room.databaseBuilder(context.applicationContext, NewsDatabase::class.java, "newsdb.db")
                         .allowMainThreadQueries()
                         .build()
                 }

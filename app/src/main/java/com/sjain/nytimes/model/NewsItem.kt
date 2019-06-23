@@ -30,7 +30,6 @@ data class NewsItem(
     var byline: String,
     @SerializedName("multimedia")
     @ColumnInfo(name = "multimedia")
-    @Ignore
     @TypeConverters(ListTypeConverter::class)
     var multimedia: List<Multimedia>
 ){

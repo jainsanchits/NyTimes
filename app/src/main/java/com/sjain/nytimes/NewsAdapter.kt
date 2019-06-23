@@ -32,7 +32,7 @@ class NewsAdapter(private val dataList: ArrayList<NewsItem>) :
             itemView.author.text = newsItem.byline
             if (newsItem.multimedia != null && newsItem.multimedia.count() > 0) {
                 Glide.with(itemView.newsImage.context.applicationContext)
-                    .load(newsItem.multimedia.get(0).url)
+                    .load(newsItem.multimedia.get(0).url1)
                     .into(itemView.newsImage)
             }
         }

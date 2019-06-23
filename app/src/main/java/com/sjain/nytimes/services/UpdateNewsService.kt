@@ -1,36 +1,33 @@
-/*
 package com.sjain.nytimes.services
 
 import android.content.Context
-import android.widget.Toast
-import com.sjain.nytimes.MainActivity
-import com.sjain.nytimes.NewsAdapter
-import com.sjain.nytimes.model.NewsData
+import androidx.work.Worker
+import androidx.work.WorkerParameters
+import com.sjain.nytimes.networkpkg.APIService
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_main.*
 
 class UpdateNewsService(context: Context, workerParams: WorkerParameters) : Worker(context, workerParams) {
 
 
     override fun doWork(): Result {
 
-            mCompositeDisposable?.add(
-                MainActivity.getService().getNewsListing("technology")
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(this::handleResponse, this::handleError)
-            )
+        val mApiService = APIService.create()
+        val mCompositeDisposable = CompositeDisposable()
+        mCompositeDisposable?.add(
+            mApiService.getNewsListing("technology")
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ results ->
+                    val results1 = results
+
+                }, { error ->
+                    error
+                }))
         return Result.success();
 
     }
-    private fun handleResponse(newsData: NewsData) {
-        UpdateMethodSuccess(newsData);
-    }
 
-    private fun handleError(error: Throwable) {
-        UpdateMehtodfailure(error);
-    }
-
-}*/
+}

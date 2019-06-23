@@ -2,6 +2,7 @@ package com.sjain.nytimes.database
 
 import androidx.room.*
 import com.sjain.nytimes.model.NewsItem
+import java.util.*
 
 @Dao
 interface NewsItemDao {
