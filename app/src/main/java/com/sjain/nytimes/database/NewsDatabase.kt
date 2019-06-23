@@ -14,7 +14,7 @@ abstract class NewsDatabase : RoomDatabase() {
     abstract fun newsItemDao(): NewsItemDao
 
     companion object {
-        lateinit var INSTANCE: NewsDatabase
+        var INSTANCE: NewsDatabase? = null
 
         fun getAppDataBase(context: Context): NewsDatabase? {
             if (INSTANCE == null) {

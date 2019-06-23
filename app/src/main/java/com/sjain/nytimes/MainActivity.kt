@@ -8,6 +8,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.sjain.nytimes.database.NewsDatabase
+import com.sjain.nytimes.database.NewsItemDao
 import com.sjain.nytimes.model.NewsData
 import com.sjain.nytimes.model.NewsItem
 import com.sjain.nytimes.networkpkg.APIService
@@ -24,8 +26,8 @@ class MainActivity : AppCompatActivity() {
 
     private var mNewsArrayList: ArrayList<NewsItem>? = null
 
-    /*  private var db: NewsDatabase? = null
-      private var newsItemDao: NewsItemDao? = null*/
+      private var db: NewsDatabase? = null
+      private var newsItemDao: NewsItemDao? = null
 
     private var mAdapter: NewsAdapter? = null
     var apiService: APIService? = null
@@ -36,23 +38,23 @@ class MainActivity : AppCompatActivity() {
 
         mCompositeDisposable = CompositeDisposable()
 
-        /*db = NewsDatabase.getAppDataBase(this);
-        newsItemDao = db?.newsItemDao()*/
+        db = NewsDatabase.getAppDataBase(this);
+        newsItemDao = db?.newsItemDao()
         getService()
         initRecyclerView()
 
-        /*if (newsItemDao?.getAllnewsItem()?.count()!! > 0) {
+        if (newsItemDao?.getAllnewsItem()?.count()!! > 0) {
             updateView()
         } else {
             loadData()
-        }*/
-        loadData()
+        }
+        //loadData()
     }
 
-    /*private fun updateView() {
-       // mAdapter = newsItemDao?.getAllnewsItem()?.let { NewsAdapter(it) }
+    private fun updateView() {
+        mAdapter = NewsAdapter(ArrayList(newsItemDao?.getAllnewsItem()!!));
         rv_news_display.adapter = mAdapter
-    }*/
+    }
 
 
     public fun getService(): APIService {
