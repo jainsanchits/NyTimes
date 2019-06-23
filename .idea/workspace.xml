@@ -135,8 +135,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sjain/nytimes/MainActivity.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-200">
-              <caret line="94" column="13" lean-forward="true" selection-start-line="94" selection-start-column="13" selection-end-line="94" selection-end-column="13" />
+            <state relative-caret-position="357">
+              <caret line="107" column="20" selection-start-line="107" selection-start-column="20" selection-end-line="107" selection-end-column="20" />
               <folding>
                 <element signature="e#124#772#0" expanded="true" />
               </folding>
@@ -267,8 +267,8 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/sjain/nytimes/services/UpdateNewsService.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/sjain/nytimes/model/NewsItem.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/sjain/nytimes/database/NewsItemDao.kt" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/sjain/nytimes/MainActivity.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/sjain/nytimes/database/NewsDatabase.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/sjain/nytimes/MainActivity.kt" />
       </list>
     </option>
   </component>
@@ -360,6 +360,10 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="DEBUGGABLE_DEVICE" value="Pixel_XL_Pie_Testing [emulator-5554]" />
+    <property name="DEBUGGABLE_PROCESS" value="com.sjain.nytimes" />
+    <property name="DEBUGGER_ID" value="Auto" />
+    <property name="SHOW_ALL_PROCESSES" value="false" />
     <property name="android.project.structure.last.selected" value="SDK Location" />
     <property name="android.project.structure.proportion" value="0.15" />
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
@@ -765,8 +769,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sjain/nytimes/MainActivity.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-200">
-          <caret line="94" column="13" lean-forward="true" selection-start-line="94" selection-start-column="13" selection-end-line="94" selection-end-column="13" />
+        <state relative-caret-position="357">
+          <caret line="107" column="20" selection-start-line="107" selection-start-column="20" selection-end-line="107" selection-end-column="20" />
           <folding>
             <element signature="e#124#772#0" expanded="true" />
           </folding>

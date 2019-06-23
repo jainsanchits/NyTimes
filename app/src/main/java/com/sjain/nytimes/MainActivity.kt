@@ -52,8 +52,22 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateView() {
-        mAdapter = NewsAdapter(ArrayList(newsItemDao?.getAllnewsItem()!!));
-        rv_news_display.adapter = mAdapter
+        if (mAdapter == null) {
+            mAdapter = NewsAdapter(ArrayList(newsItemDao?.getAllnewsItem()!!));
+            rv_news_display.adapter = mAdapter
+            /* val myConstraints = Constraints.Builder()
+                 .setRequiresBatteryNotLow(true)
+                 .build()
+             val request = PeriodicWorkRequest
+                 .Builder(UpdateNewsService::class.java, 10, TimeUnit.MINUTES)
+                 .setConstraints(myConstraints)
+                 .build()
+             WorkManager.getInstance().enqueue(request)*/
+
+        } else {
+            Toast.makeText(this, "Updated", Toast.LENGTH_SHORT).show()
+            mAdapter?.notifyDataSetChanged();
+        }
     }
 
 
@@ -87,27 +101,12 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    private fun handleResponse(androidList: NewsData) {
-        if (mAdapter == null) {
-            mNewsArrayList = ArrayList(androidList.results)
-            mAdapter = NewsAdapter(mNewsArrayList!!)
-            rv_news_display.adapter = mAdapter
-           /* val myConstraints = Constraints.Builder()
-                .setRequiresBatteryNotLow(true)
-                .build()
-            val request = PeriodicWorkRequest
-                .Builder(UpdateNewsService::class.java, 10, TimeUnit.MINUTES)
-                .setConstraints(myConstraints)
-                .build()
-            WorkManager.getInstance().enqueue(request)*/
-
-        } else {
-            Toast.makeText(this, "Updated", Toast.LENGTH_SHORT).show()
-            mAdapter?.notifyDataSetChanged();
-        }
-        /*for (newsItem in mNewsArrayList!!) {
+    private fun handleResponse(newItemList: NewsData) {
+        for (newsItem in newItemList.results!!) {
             newsItemDao?.insertNewsItem(newsItem)
-        }*/
+        }
+        updateView()
+
     }
 
     private fun handleError(error: Throwable) {
